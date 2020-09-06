@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="container mt-3 col-8">
+        <div class="alert alert-success alert-dismissible" role="alert" *ngIf="userMessage">
+            <button type="button" class="close" (click)="close()">&times;</button> details Successful. Please click on user details to view the details.
+        </div>
+        <h2 class="text-center"><u>USER Edit FORM</u></h2>
+        <form #userEditForm="ngForm" (ngSubmit)="onUserEditClick(userEditForm.value)" autocomplete="off">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="firstName" class="col-sm-4 col-form-label">First Name:</label>
+                    <input type="text" #firstName="ngModel" class="form-control" name="firstName" placeholder="Enter first name" ngModel required>
+
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="col-sm-4 col-form-label">Last Name:</label>
+                    <input type="text" #lastName="ngModel" class="form-control" name="lastName" placeholder="Enter last name" ngModel required>
+
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="phone" class="col-sm-4 col-form-label">Mobile No.:</label>
+                    <input type="text" #phone="ngModel" class="form-control" name="phone" placeholder="Enter mobile no." pattern="^((\+){1}91){1}[1-9]{1}[0-9]{9}$" ngModel required>
+
+                </div>
+                <div class="col-sm-6">
+                    <label for="email" class="col-sm-4 col-form-label">Email address:</label>
+                    <input type="email" #email="ngModel" class="form-control" name="email" placeholder="Enter email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel required>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="date" class="col-sm-6 col-form-label">Date of Birth:</label>
+                    <input type="date" #date="ngModel" class="form-control" name="date" ngModel required>
+                    <small class="text-danger" *ngIf="date.invalid && (date.touched || date.dirty)">*Date is required</small>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="qualification" class="col-sm-4 col-form-label">Qualification</label>
+                    <input type="text" #qualification="ngModel" class="form-control" name="qualification" placeholder="Enter qualification " ngModel required>
+
+                </div>
+            </div>
+
+
+            <button class="btn btn-warning mr-3" type="reset">Clear</button>
+            <button class="btn btn-primary mr-3" type="button" (click)="onSubmitOfEdit(name)">Submit</button>
+            <button class="btn btn-danger " type="button" (click)="onCancleOfEdit()">Cancel</button>
+        </form>
+    </div>
+</div>
