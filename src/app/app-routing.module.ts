@@ -21,8 +21,6 @@ const routes: Routes = [
   {
     path: 'register', component: SignupComponent
   },
-
-  
   {
     path: 'user', component: UserFormComponent,
     canActivate: [AuthGuard]
@@ -31,6 +29,14 @@ const routes: Routes = [
     path: 'details', component: UserListComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'edit/:email', component: UserFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit', component: UserEditComponent,
+    canActivate: [AuthGuard]
+  }
  
 ];
 

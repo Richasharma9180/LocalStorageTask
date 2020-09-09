@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/service/generic.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -11,9 +12,13 @@ export class UserFormComponent implements OnInit {
   public storeUserDetails;
   public today = new Date();
   public userMessage;
-  constructor(private service: GenericService) { }
+  public email;
+  constructor(private service: GenericService,private route: ActivatedRoute,) { }
+  
 
   ngOnInit() {
+    this.email = this.route.snapshot.params['email'];
+    debugger;
     // details of the user
     
     this.storeUserDetails = this.service.getUserDetails();
@@ -25,6 +30,8 @@ export class UserFormComponent implements OnInit {
     this.userMessage = true;
     localStorage.setItem('User', JSON.stringify(this.storeUserDetails));
   }
+
+ 
 
   // Method to close the alert message
   close() {

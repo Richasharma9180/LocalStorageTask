@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/service/generic.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit',
@@ -8,34 +9,47 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  id;
+  public email;
+  
+  public details: any;
+  
+
 
  
-  constructor(public genericService: GenericService,private router: Router,
+  constructor(public service: GenericService,private router: Router,
     private route: ActivatedRoute,) 
   {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+   
+    this.email = this.route.snapshot.paramMap.get['email'];
 
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = params['id'];
+        this.email = params['email'];
       }
     );
   }
 
-  onSubmitOfEdit(name: HTMLInputElement, status: HTMLInputElement) {
-    // this.genericService.getUserDetails[this.id].firstName = firstName.value;
-    // this.genericService.getUserDetails[this.id].category = this.category.nativeElement.value;
-    // this.genericService.getUserDetails[this.id].status = status.checked;
-    //console.log(name);
-    // this.showListPage.emit();
-    this.router.navigate(['user'], { relativeTo: this.route })
+  onSubmit(form:NgForm) {
+     let user={
+      firstName:form.value.firstName,
+      lastName: form.value.lastName,
+      phone: form.value.phone,
+      email:form.value.email,
+      dob:form.value.date,
+      qualification :form.value.qualification,
+
+     }
+     console.log(user);
+    
+   
+    this.router.navigate(['user'])
+    
   }
 
   onCancleOfEdit() {
-    this.router.navigate(['user'], { relativeTo: this.route })
+    this.router.navigate(['user'])
     // this.cancleClicked.emit();
   }
 }

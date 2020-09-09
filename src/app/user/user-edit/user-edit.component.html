@@ -4,7 +4,7 @@
             <button type="button" class="close" (click)="close()">&times;</button> details Successful. Please click on user details to view the details.
         </div>
         <h2 class="text-center"><u>USER Edit FORM</u></h2>
-        <form #userEditForm="ngForm" (ngSubmit)="onUserEditClick(userEditForm.value)" autocomplete="off">
+        <form #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm.value)" autocomplete="off">
             <div class="form-group row">
                 <div class="col-sm-6">
                     <label for="firstName" class="col-sm-4 col-form-label">First Name:</label>

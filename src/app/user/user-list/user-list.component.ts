@@ -21,9 +21,9 @@ export class UserListComponent implements OnInit {
   }
 
   
-  onEditClicked() {
+  onEditClicked(detail) {
 
-    this.router.navigate(['edit'], { relativeTo: this.route })
+    this.router.navigate(['edit',detail.email])
   }
 
  
