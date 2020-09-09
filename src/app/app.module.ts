@@ -9,7 +9,6 @@ import { SignupComponent } from './signup/signup.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserComponent } from './user/user.component';
 import { UserFormComponent } from './user/user-form/user-form.component';
-import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +17,13 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     SignupComponent,
     UserListComponent,
     UserComponent,
-    UserFormComponent,
-    UserEditComponent
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

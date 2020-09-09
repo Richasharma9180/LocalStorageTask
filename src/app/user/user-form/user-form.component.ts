@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/service/generic.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -8,27 +8,35 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-
-  public storeUserDetails;
+  public isEditForm:boolean;
   public today = new Date();
+  public user;
   public userMessage;
   public email;
-  constructor(private service: GenericService,private route: ActivatedRoute,) { }
+  constructor(private service: GenericService,private route: ActivatedRoute,private router: Router) { }
   
 
   ngOnInit() {
     this.email = this.route.snapshot.params['email'];
-    debugger;
-    // details of the user
-    
-    this.storeUserDetails = this.service.getUserDetails();
+    if(this.email){
+      this.isEditForm=true;
+     this.user= this.service.onGetUserByEmail(this.email);
+    }else {
+      this.isEditForm=false;
+      this.user={};
+    }
   }
 
   // Method to store and book the booking details
-  onUserClick(data) { 
-    this.storeUserDetails.push(data);
+  onUserClick() { 
+    if(this.isEditForm){
+    this.service.onEdit(this.email,this.user);
+    }else{
+      this.service.onAdd(this.user);
+    }
     this.userMessage = true;
-    localStorage.setItem('User', JSON.stringify(this.storeUserDetails));
+    this.router.navigate(['/users']);
+  
   }
 
  

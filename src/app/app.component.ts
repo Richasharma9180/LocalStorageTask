@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GenericService } from './service/generic.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'taskAngular';
+
+  constructor(private service: GenericService) {}
+  
 }

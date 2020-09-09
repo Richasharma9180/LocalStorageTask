@@ -21,12 +21,10 @@ export class UserListComponent implements OnInit {
   }
 
   
-  onEditClicked(detail) {
-
-    this.router.navigate(['edit',detail.email])
+  onEditClick(detail) {
+    this.router.navigate(['edit-user/'+detail.email]);
   }
 
- 
 // Method to delete the user
 delete(id) {
     console.log(this.userList)

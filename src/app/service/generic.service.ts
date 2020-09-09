@@ -48,4 +48,23 @@ export class GenericService {
       return [];
     }
   }
+
+  public onAdd(data) {
+    const storeUserDetails=this.getUserDetails();
+    storeUserDetails.push(data);
+    localStorage.setItem('User', JSON.stringify(storeUserDetails));
+  }
+
+  public onGetUserByEmail(email) {
+    const storeUserDetails:any[]=this.getUserDetails();
+    const filteredUser= storeUserDetails.find(user=>user.email===email);
+   return filteredUser;
+  }
+
+  onEdit(email,data){
+    const storeUserDetails:any[]=this.getUserDetails();
+    const filteredUserIndex= storeUserDetails.findIndex(user=>user.email===email);
+    storeUserDetails[filteredUserIndex]=data;
+    localStorage.setItem('User', JSON.stringify(storeUserDetails));
+  }
 }
